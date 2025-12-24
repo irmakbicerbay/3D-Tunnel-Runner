@@ -1,0 +1,72 @@
+*:where(*){ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{
+  background:#050816;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:#e5e7eb;
+  overflow:hidden;
+  position:relative;
+}
+
+#c{
+  width:100vw;
+  height:100vh;
+  display:block;
+  outline:none;
+}
+
+#c::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.35));
+  z-index:2;
+}
+
+#hud{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1100px, 96vw);
+  padding:14px 16px;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(14,18,36,.92), rgba(11,16,32,.82));
+  border:1px solid rgba(148,163,184,.35);
+  color:#e5e7eb;
+  backdrop-filter: blur(10px);
+  box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.02);
+  z-index:10;
+}
+
+.title{
+  font-weight:900;
+  letter-spacing:.5px;
+  color:#ff7a24;
+  font-size:19px;
+  margin-bottom:6px;
+}
+
+.row{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+#score, #best, #status{
+  font-weight:800;
+}
+
+#status{
+  margin-left:auto;
+  color:#e5e7eb;
+}
+
+.hint{
+  margin-top:8px;
+  font-size:12px;
+  color:#cbd5e1;
+  opacity:.95;
+}
