@@ -1,4 +1,16 @@
 import * as THREE from "https://unpkg.com/three@0.158.0/build/three.module.js";
+const API_BASE = "http://127.0.0.1:3000";
+
+async function submitScore(playerName, score) {
+  await fetch(`${API_BASE}/score`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      player_name: playerName,
+      score: score
+    })
+  });
+}
 
 // DOM
 const canvas = document.getElementById("c");
@@ -207,11 +219,17 @@ function startGame() {
 function endGame() {
   running = false;
   gameOver = true;
-  statusEl.textContent = "GAME OVER — Press SPACE to restart";
+  statusEl.textContent = "GAME OVER - Press SPACE to restart";
+
   best = Math.max(best, Math.floor(score));
   localStorage.setItem("ata3d_best", String(best));
   bestEl.textContent = `Best: ${best}`;
+
+  const finalScore = Math.floor(score);
+  const name = prompt("Name for leaderboard?") || "Anonymous";
+  submitScore(name, finalScore);
 }
+
 
 function spawnObstacle() {
   const lane = Math.floor(Math.random() * 3);
